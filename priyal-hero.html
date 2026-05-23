@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priyal Jain — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #F7F2E8;
+    --black: #0F0F0F;
+    --pink: #FF2D6B;
+    --yellow: #FFE033;
+    --green: #00E87A;
+    --purple: #7B2FFF;
+    --display: 'Syne', sans-serif;
+    --body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: var(--body);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 5rem;
+    background: rgba(247, 242, 232, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(15,15,15,0.06);
+  }
+
+  .logo {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .logo-dot {
+    width: 8px; height: 8px;
+    background: var(--pink);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-cta {
+    background: var(--black) !important;
+    color: var(--cream) !important;
+    opacity: 1 !important;
+    padding: 0.55rem 1.3rem;
+    border-radius: 100px;
+    font-weight: 500 !important;
+    transition: background 0.25s, transform 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--pink) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 5rem 4rem;
+    gap: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Background decorative rings */
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255,45,107,0.12);
+    top: 50%; left: -180px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(123,47,255,0.1);
+    bottom: 80px; right: 60px;
+    pointer-events: none;
+  }
+
+  /* ── LEFT COLUMN ── */
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    z-index: 2;
+    animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+    opacity: 0;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--yellow);
+    color: var(--black);
+    padding: 0.45rem 1.1rem;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    width: fit-content;
+  }
+
+  .badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #00bb58;
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .hero-name {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(4.5rem, 9vw, 8.5rem);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    color: var(--black);
+  }
+
+  .hero-name .accent { color: var(--pink); }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    font-weight: 400;
+    color: rgba(15,15,15,0.55);
+    max-width: 400px;
+    line-height: 1.6;
+  }
+
+  .hero-tagline strong {
+    color: var(--black);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: flex;
+    gap: 2.5rem;
+    padding: 1.2rem 0;
+    border-top: 1px solid rgba(15,15,15,0.1);
+    border-bottom: 1px solid rgba(15,15,15,0.1);
+  }
+
+  .stat { display: flex; flex-direction: column; gap: 0.1rem; }
+
+  .stat-num {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.8rem;
+    letter-spacing: -0.04em;
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .stat-num span { color: var(--pink); }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: rgba(15,15,15,0.45);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* CTAs */
+  .cta-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-pink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--pink);
+    color: #fff;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-pink:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(255,45,107,0.3); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--black);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border: 1.5px solid rgba(15,15,15,0.25);
+    transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--black);
+    background: var(--black);
+    color: var(--cream);
+    transform: translateY(-3px);
+  }
+
+  /* ── RIGHT COLUMN ── */
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 520px;
+    z-index: 2;
+    animation: fadeIn 1s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* Big morphing blob */
+  .blob {
+    width: 360px;
+    height: 360px;
+    background: var(--pink);
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: morph 8s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+  }
+
+  @keyframes morph {
+    0%,100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%; }
+    33%      { border-radius: 40% 60% 70% 30% / 55% 45% 65% 35%; }
+    66%      { border-radius: 55% 45% 35% 65% / 40% 60% 40% 60%; }
+  }
+
+  .blob-text {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 5.5rem;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: -0.06em;
+    line-height: 1;
+    text-align: center;
+  }
+
+  /* Decorative solid circles */
+  .deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .deco-yellow {
+    width: 110px; height: 110px;
+    background: var(--yellow);
+    top: 30px; right: 20px;
+    z-index: 1;
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .deco-green {
+    width: 65px; height: 65px;
+    background: var(--green);
+    bottom: 70px; left: 30px;
+    z-index: 1;
+    animation: float 6s ease-in-out 0.5s infinite reverse;
+  }
+
+  .deco-purple {
+    width: 35px; height: 35px;
+    background: var(--purple);
+    top: 80px; left: 60px;
+    animation: float 4s ease-in-out 1s infinite;
+  }
+
+  .deco-pink-sm {
+    width: 20px; height: 20px;
+    background: var(--pink);
+    bottom: 120px; right: 50px;
+    animation: float 3.5s ease-in-out 0.8s infinite reverse;
+  }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-14px) rotate(5deg); }
+  }
+
+  /* Floating info cards */
+  .float-card {
+    position: absolute;
+    background: #fff;
+    border-radius: 14px;
+    padding: 0.65rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--black);
+    white-space: nowrap;
+    z-index: 4;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  }
+
+  .card-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .card-1 { top: 50px; left: -30px; animation: float 5s ease-in-out infinite; }
+  .card-2 { bottom: 80px; right: -40px; animation: float 6s ease-in-out 1s infinite reverse; }
+  .card-3 { top: 48%; right: -50px; animation: float 4.5s ease-in-out 0.5s infinite; }
+
+  .card-1 .card-icon { background: #FFF3CD; }
+  .card-2 .card-icon { background: #D4EDDA; }
+  .card-3 .card-icon { background: #F0E6FF; }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--black);
+    padding: 0.9rem 0;
+    overflow: hidden;
+  }
+
+  .marquee-inner {
+    display: inline-flex;
+    gap: 0;
+    animation: scroll 22s linear infinite;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .m-item {
+    font-family: var(--display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.7);
+    padding: 0 2.5rem;
+    white-space: nowrap;
+  }
+
+  .m-item .dot { color: var(--pink); margin-left: 2.5rem; }
+
+  /* ── SCROLL HINT ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(15,15,15,0.35);
+    z-index: 2;
+    animation: bounceDown 2s ease-in-out infinite;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: rgba(15,15,15,0.2);
+  }
+
+  @keyframes bounceDown {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(5px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="#" class="logo">
+    PJ <span class="logo-dot"></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Work</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Skills</a></li>
+    <li><a href="#" class="nav-cta">Let's Talk →</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+
+  <!-- Left -->
+  <div class="hero-left">
+
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Open to opportunities
+    </div>
+
+    <h1 class="hero-name">
+      PRIYAL<br>
+      <span class="accent">JAIN.</span>
+    </h1>
+
+    <p class="hero-tagline">
+      I turn <strong>creative chaos</strong> into measurable impact —
+      brand campaigns, social media & influencer marketing.
+    </p>
+
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-num">70<span>K+</span></span>
+        <span class="stat-label">Event Attendees</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">25<span>K+</span></span>
+        <span class="stat-label">App Downloads</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">12<span>+</span></span>
+        <span class="stat-label">Brands Worked With</span>
+      </div>
+    </div>
+
+    <div class="cta-group">
+      <a href="#" class="btn-pink">See My Work ↓</a>
+      <a href="#" class="btn-outline">About Me</a>
+    </div>
+
+  </div>
+
+  <!-- Right -->
+  <div class="hero-right">
+
+    <!-- Decorative circles -->
+    <div class="deco deco-yellow"></div>
+    <div class="deco deco-green"></div>
+    <div class="deco deco-purple"></div>
+    <div class="deco deco-pink-sm"></div>
+
+    <!-- Morphing blob -->
+    <div class="blob">
+      <span class="blob-text">PJ</span>
+    </div>
+
+    <!-- Floating cards -->
+    <div class="float-card card-1">
+      <div class="card-icon">🎯</div>
+      Campaign Strategy
+    </div>
+
+    <div class="float-card card-2">
+      <div class="card-icon">📲</div>
+      105K+ Followers Grown
+    </div>
+
+    <div class="float-card card-3">
+      <div class="card-icon">✨</div>
+      Influencer Marketing
+    </div>
+
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">Scroll</div>
+
+</section>
+
+<!-- Marquee ticker -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="m-item">Influencer Marketing <span class="dot">✦</span></span>
+    <span class="m-item">Brand Campaigns <span class="dot">✦</span></span>
+    <span class="m-item">Event Management <span class="dot">✦</span></span>
+    <span class="m-item">Social Media Strategy <span class="dot">✦</span></span>
+    <span class="m-item">Content Creation <span class="dot">✦</span></span>
+    <span class="m-item">Meta Ads <span class="dot">✦</span></span>
+    <span class="m-item">Campaign Analytics <span class="dot">✦</span></span>
+    <span class="m-item">Influencer Marketing <span class="dot">✦</span></span>
+    <span class="m-item">Brand Campaigns <span class="dot">✦</span></span>
+    <span class="m-item">Event Management <span class="dot">✦</span></span>
+    <span class="m-item">Social Media Strategy <span class="dot">✦</span></span>
+    <span class="m-item">Content Creation <span class="dot">✦</span></span>
+    <span class="m-item">Meta Ads <span class="dot">✦</span></span>
+    <span class="m-item">Campaign Analytics <span class="dot">✦</span></span>
+  </div>
+</div>
+
+</body>
+</html>
